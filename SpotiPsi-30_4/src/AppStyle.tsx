@@ -6,6 +6,7 @@ const useStyles = makeStyles()(() => ({
         height:'100vh',
         backgroundColor:'#121212',
         margin:'0'
+
     }
 
 }));

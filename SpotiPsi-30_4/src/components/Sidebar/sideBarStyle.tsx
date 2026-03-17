@@ -8,10 +8,31 @@ const useStyles = makeStyles()(() => ({
         height:'100%',
         backgroundColor:'#121212',
         color:'white',
+        borderLeft:'0.5px solid white',
+
+},
+    listStyle:{
+        listStyleType:'none',
         display:'flex',
         flexDirection:'column',
-        alignItems:'right'
-}
+        height:'20%',
+        width:'100%',
+        marginTop:'0',
+        alignItems:'center',        
+    },
+    listItem: {
+        "&:hover":{
+        backgroundColor:'#2D2032',
+        
+        },
+        width:'100%',
+        display:'flex',
+        height:'100%',
+        justifyContent:'center',
+        cursor:'pointer',
+        alignItems:'center'
+
+    }
 
 }));
 

@@ -12,7 +12,8 @@ const useStyles = makeStyles()(() => ({
         display:'flex',
         justifyContent:'center',
         alignItems:'center',
-        fontSize:'2.3vh'
+        fontSize:'2.3vh',
+        borderTop:'#2A2A2A'
 }
 
 }));

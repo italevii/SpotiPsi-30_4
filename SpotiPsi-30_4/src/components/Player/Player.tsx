@@ -4,7 +4,7 @@ const Footer = () =>{
 
     return(
         <>
-        <div className={classes.footer}>אין שירים</div>
+        <div className={classes.footer}>נגן שירים</div>
         </>
     )
 }

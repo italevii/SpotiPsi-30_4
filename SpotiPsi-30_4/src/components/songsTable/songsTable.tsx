@@ -1,12 +1,23 @@
 import useStyles from "./songsTableStyles";
 import SongDisplay from "../songDisplay/songDisplay";
 import type {Song} from "../../assets/types"
+import {CheckInFavorite} from "../HelperFunctions/CheckSongInFavorites"
+import { useContext } from "react";
+import { FavoritesContext } from "../../App";
+
 interface Props {
   songList: Array<Song>;
 }
 
-const SongsTable = ({ songList }: Props) => {
+const SongsTable = ({ songList}: Props) => {
   const { classes } = useStyles();
+  const favoritesContext = useContext(FavoritesContext);
+
+    if (!favoritesContext) {
+        throw new Error("FavoritesContext must be used inside FavoritesProvider");
+    }
+    const { favoriteSongsList, setFavoriteSongsList } = favoritesContext;
+
 
   return (
     <div className={classes.songs_table}>
@@ -17,6 +28,7 @@ const SongsTable = ({ songList }: Props) => {
           name={song.name}
           artist={song.artist}
           album={song.album}
+          isFavorite = {CheckInFavorite(favoriteSongsList,song.id)}
         />
       ))}
     </div>

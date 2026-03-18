@@ -15,7 +15,7 @@ const useStyles = makeStyles()(() => ({
     direction:'ltr',
     float:'left'
   },
-  play_icon: {
+  purple_icon: {
     color: "#9B59B6",
     width: "1.5vw",
     height: "1.5vw",

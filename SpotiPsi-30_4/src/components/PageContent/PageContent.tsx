@@ -5,15 +5,14 @@ import type {Song} from "../../assets/types"
 interface Props{
     pageType:string;
     songList:Array<Song>;
-    favoriteSongs:Array<string>;
 }
-const PageContent = ({pageType,songList,favoriteSongs}:Props) =>{
+const PageContent = ({pageType,songList}:Props) =>{
     const getPage = (pageType:string) =>{
         if(pageType === "songs"){
-            return <AllSongsPage songList={songList}/>
+            return <AllSongsPage songList={songList} />
         }
         if(pageType === "favorites"){
-            return <FavoritePage songList={songList} favoriteSongs={favoriteSongs}/>
+            return <FavoritePage songList={songList} />
         }
     }
 

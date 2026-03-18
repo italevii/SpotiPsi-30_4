@@ -8,13 +8,6 @@ interface Props{
     songList:Array<Object>;
     favoriteSongs:Array<string>
 }
-interface song {
-    id: string
-    name: string
-    artist: string
-    album: string
-
-}
 const MainSection = ({changePage,pageType,songList,favoriteSongs}:Props) =>{
       const { classes } = useStyles();
 

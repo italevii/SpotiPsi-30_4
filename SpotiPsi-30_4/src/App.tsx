@@ -11,19 +11,25 @@ interface FavoritesContextType {
   favoriteSongsList: string[];
   setFavoriteSongsList: React.Dispatch<React.SetStateAction<string[]>>;
 }
-
+interface reRenderPlaylistsContextType {
+  reRenderPlayList: boolean;
+  setReRenderPlayList: React.Dispatch<React.SetStateAction<boolean>>;
+}
 const allSongs = await fetchSongs()
 const favoriteSongs = await fetchFavoriteSongs()
 const serverPlayLists = await fetchPlaylists()
-export const FavoritesContext = createContext<FavoritesContextType | null>(null);
 
+export const FavoritesContext = createContext<FavoritesContextType | null>(null);
+export const reRenderPlaylistsContext = createContext<reRenderPlaylistsContextType | null>(null);
 
 function App() {
   const { classes } = useStyles();
   const [currentPage, setCurrentPage] = useState("songs");
   const [songList, setSongList] = useState([])
   const [favoriteSongsList, setFavoriteSongsList] = useState<string[]>(favoriteSongs)
-  const [playLists,setPlaylists] = useState([])
+  const [playLists, setPlaylists] = useState(serverPlayLists)
+  const [reRenderPlayList, setReRenderPlayList] = useState<boolean>(true)
+
   const changePage = (pageType: string) => {
     setCurrentPage(pageType);
   };
@@ -33,23 +39,27 @@ function App() {
 
   }, [songList])
 
-  
-    useEffect(() => {
+  useEffect(() => {
+    const fetchData = async () => {
+    const serverPlayLists = await fetchPlaylists()
     setPlaylists(serverPlayLists)
-  }, [playLists])
-  
-    useEffect(() => {
-    setPlaylists(serverPlayLists)
-  }, [playLists])
+  }
+
+  fetchData()
+  }, [reRenderPlayList])
+ 
 
 
   return (
     <div className={classes.body}>
       <Header />
-      <FavoritesContext.Provider value={{ favoriteSongsList, setFavoriteSongsList }}>
-      <MainSection changePage={changePage} pageType={currentPage} songList = {songList} playLists ={playLists} />
-      </FavoritesContext.Provider>
-      <Player/>
+      <reRenderPlaylistsContext.Provider value={{reRenderPlayList, setReRenderPlayList}}>
+        <FavoritesContext.Provider value={{ favoriteSongsList, setFavoriteSongsList }}>
+          <MainSection changePage={changePage} pageType={currentPage} songList={songList} playLists={playLists} />
+        </FavoritesContext.Provider>
+      </reRenderPlaylistsContext.Provider>
+
+      <Player />
     </div>
   );
 }

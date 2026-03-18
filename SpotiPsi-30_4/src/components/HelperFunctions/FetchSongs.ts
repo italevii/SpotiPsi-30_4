@@ -1,8 +1,9 @@
-const fetchSongs = async  () => {
+
+
+export const fetchSongs = async  () => {
     try{
-        const respone = await fetch("https://127.0.0.1:5001/api/songs/");
+        const respone = await fetch("http://127.0.0.1:5001/api/songs");
         const data = await respone.json()
-        console.log(data)
         return data
     }
     catch (error){
@@ -10,4 +11,4 @@ const fetchSongs = async  () => {
     }
 }
 
-export default fetchSongs
+

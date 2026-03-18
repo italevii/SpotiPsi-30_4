@@ -5,11 +5,6 @@ import MainSection from './components/Main/MainSection';
 import { useEffect, useState } from 'react';
 import { fetchSongs } from './components/HelperFunctions/FetchSongs';
 import { fetchFavoriteSongs } from './components/HelperFunctions/FetchFavorites';
-import AllSongsPage from './components/AllSongsPage/AllSongsPage';
-import FavoritePage from './components/FavoritePage/FavoritePage';
-import { BrowserRouter as Router , Route,Routes } from "react-router-dom";
-
-
 
 
 const allSongs = await fetchSongs()

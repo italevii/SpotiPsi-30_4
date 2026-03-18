@@ -1,22 +1,16 @@
 import useStyles from "./songsTableStyles";
 import SongDisplay from "../songDisplay/songDisplay";
-interface Song {
-  id: string;
-  name: string;
-  artist: string;
-  album: string;
-}
-
+import type {Song} from "../../assets/types"
 interface Props {
-  songs: Song[];
+  songList: Array<Song>;
 }
 
-const SongsTable = ({ songs }: Props) => {
+const SongsTable = ({ songList }: Props) => {
   const { classes } = useStyles();
 
   return (
     <div>
-      {songs.map((song) => (
+      {songList.map((song) => (
         <SongDisplay
           key={song.id}
           id={song.id}

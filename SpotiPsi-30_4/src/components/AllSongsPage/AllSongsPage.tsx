@@ -1,12 +1,14 @@
+import SongsTable from "../songsTable/songsTable";
+import type {Song} from "../../assets/types"
 
 interface Props{
-    songList:Array<Object>
+    songList: Array<Song>;
 }
 const AllSongsPage = ({songList}:Props) =>{
 
     return(
         <>
-        {/* <SongsTable songList = {songList}/> */}
+        {<SongsTable songList = {songList}/>}
         </>
     )
 }

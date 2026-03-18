@@ -1,9 +1,10 @@
 import AllSongsPage from "../AllSongsPage/AllSongsPage";
 import FavoritePage from "../FavoritePage/FavoritePage";
+import type {Song} from "../../assets/types"
 
 interface Props{
     pageType:string;
-    songList:Array<Object>;
+    songList:Array<Song>;
     favoriteSongs:Array<string>;
 }
 const PageContent = ({pageType,songList,favoriteSongs}:Props) =>{

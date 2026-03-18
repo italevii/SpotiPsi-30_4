@@ -1,16 +1,18 @@
+import SongsTable from "../songsTable/songsTable";
+import type {Song} from "../../assets/types"
 
 interface Props {
-    songList: Array<Object>;
+    songList:Array<Song>
     favoriteSongs: Array<string>;
 }
 const FavoritePage = ({ songList, favoriteSongs }: Props) => {
-
-    const favoriteSongslist: Array<Object> = songList.filter((item:Object) => 
+    let favoriteSongslist:Array<Song> =[]
+    favoriteSongslist = songList.filter((item:Object) => 
         favoriteSongs.includes(item.id))
     console.log(favoriteSongslist)
     return (
         <>
-        {/* <SongsTable songList={favoriteSongslist} /> */}
+        {<SongsTable songList={favoriteSongslist} />}
         </>
     )
 }

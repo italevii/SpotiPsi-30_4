@@ -2,10 +2,11 @@ import PageContent from "../PageContent/PageContent";
 import SideBar from "../Sidebar/Sidebar";
 import useStyles from "./MainSectionStyle";
 import SongsTable from "../songsTable/songsTable";
+import type { Song } from "../../assets/types";
 interface Props{
     changePage:(pageType:string) => MouseEventHandler<HTMLLIElement>
     pageType:string;
-    songList:Array<Object>;
+    songList:Array<Song>;
     favoriteSongs:Array<string>
 }
 const MainSection = ({changePage,pageType,songList,favoriteSongs}:Props) =>{

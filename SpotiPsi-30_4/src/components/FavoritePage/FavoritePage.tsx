@@ -12,7 +12,7 @@ const FavoritePage = ({ songList, favoriteSongs }: Props) => {
     console.log(favoriteSongslist)
     return (
         <>
-        {<SongsTable songList={songList} favoriteSongList={favoriteSongs}/>}
+        {<SongsTable songList={favoriteSongslist} favoriteSongList={favoriteSongs}/>}
         </>
     )
 }

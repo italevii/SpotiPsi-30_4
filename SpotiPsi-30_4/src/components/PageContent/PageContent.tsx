@@ -6,17 +6,13 @@ import useStyles from "./PageContentStyle";
 interface Props{
     pageType:string;
     songList:Array<Song>;
-<<<<<<< HEAD
-}
-const PageContent = ({pageType,songList}:Props) =>{
-=======
-    favoriteSongs:Array<string>;
     playLists:Array<Playlist>
+
 }
-const PageContent = ({pageType,songList,favoriteSongs,playLists}:Props) =>{
+
+const PageContent = ({pageType,songList,playLists}:Props) =>{
         const { classes } = useStyles();
 
->>>>>>> be5d196 (30/added playlists)
     const getPage = (pageType:string) =>{
         if(pageType === "songs"){
             return <AllSongsPage songList={songList} />

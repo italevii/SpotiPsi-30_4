@@ -6,25 +6,15 @@ interface Props{
     changePage:(pageType:string) => MouseEventHandler<HTMLLIElement>
     pageType:string;
     songList:Array<Song>;
-<<<<<<< HEAD
-}
-const MainSection = ({changePage,pageType,songList}:Props) =>{
-=======
-    favoriteSongs:Array<string>;
     playLists:Array<Playlist>
 }
-const MainSection = ({changePage,pageType,songList,favoriteSongs,playLists}:Props) =>{
->>>>>>> be5d196 (30/added playlists)
+const MainSection = ({changePage,pageType,songList,playLists}:Props) =>{
       const { classes } = useStyles();
 
     return (
         <div className={classes.MainSection}>
         <SideBar changePage = {changePage}/>
-<<<<<<< HEAD
-        <PageContent pageType = {pageType} songList={songList} />
-=======
-        <PageContent pageType = {pageType} songList={songList} favoriteSongs = {favoriteSongs} playLists = {playLists}/>
->>>>>>> be5d196 (30/added playlists)
+        <PageContent pageType = {pageType} songList={songList}  playLists = {playLists}/>
         </div>
 
     )

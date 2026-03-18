@@ -23,7 +23,7 @@ function App() {
   const { classes } = useStyles();
   const [currentPage, setCurrentPage] = useState("songs");
   const [songList, setSongList] = useState([])
-  const [favoriteSongsList, setFavoriteSongsList] = useState<string[]>([])
+  const [favoriteSongsList, setFavoriteSongsList] = useState<string[]>(favoriteSongs)
 
   const changePage = (pageType: string) => {
     setCurrentPage(pageType);

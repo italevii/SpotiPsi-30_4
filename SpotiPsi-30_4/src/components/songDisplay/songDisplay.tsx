@@ -5,7 +5,7 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { useContext } from "react";
 import { FavoritesContext } from "../../App";
-
+import { updateFavorites } from "../HelperFunctions/UpdateFavorites";
 interface Props {
     id: string
     name: string
@@ -38,6 +38,7 @@ const SongDisplay = ({ id, name, artist, album, isFavorite }: Props) => {
         else{
             setFavoriteSongsList(prev => [...prev, id])
         }
+        updateFavorites(favoriteSongsList, id)
         isFavorite = !isFavorite
     }
 

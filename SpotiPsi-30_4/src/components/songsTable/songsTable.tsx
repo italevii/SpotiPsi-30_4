@@ -9,7 +9,7 @@ const SongsTable = ({ songList }: Props) => {
   const { classes } = useStyles();
 
   return (
-    <div>
+    <div className={classes.songs_table}>
       {songList.map((song) => (
         <SongDisplay
           key={song.id}

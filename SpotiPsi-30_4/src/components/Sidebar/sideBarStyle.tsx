@@ -28,7 +28,7 @@ const useStyles = makeStyles()(() => ({
         },
         width: '100%',
         display: 'flex',
-        height: '100%',
+        height: '80%',
         justifyContent: 'flex-start',
         cursor: 'pointer',
         alignItems: 'center',

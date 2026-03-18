@@ -10,6 +10,9 @@ const FavoritePage = ({ songList, favoriteSongs }: Props) => {
     favoriteSongslist = songList.filter((item:Object) => 
         favoriteSongs.includes(item.id))
     console.log(favoriteSongslist)
+
+
+    
     return (
         <>
         {<SongsTable songList={favoriteSongslist} />}

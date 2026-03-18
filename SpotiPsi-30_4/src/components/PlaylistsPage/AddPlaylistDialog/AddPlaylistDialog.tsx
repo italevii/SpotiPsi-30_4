@@ -19,6 +19,7 @@ const AddPlaylistDialog = ({ open, handleClose }: Props) => {
             alert(`playlist ${newPlaylistName} added`)
             setNewPlaylistName("")
             handleClose()
+            reRender()
             
         }
 

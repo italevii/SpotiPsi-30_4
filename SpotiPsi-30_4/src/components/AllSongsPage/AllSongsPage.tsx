@@ -3,13 +3,12 @@ import type {Song} from "../../assets/types"
 
 interface Props{
     songList: Array<Song>;
-    favoriteSongsList: Array<string>
 }
-const AllSongsPage = ({songList, favoriteSongsList}:Props) =>{
+const AllSongsPage = ({songList}:Props) =>{
 
     return(
         <>
-        {<SongsTable songList = {songList}  favoriteSongList={favoriteSongsList}/>}
+        {<SongsTable songList = {songList}/>}
         </>
     )
 }

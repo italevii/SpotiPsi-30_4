@@ -24,7 +24,7 @@ function App() {
   const [currentPage, setCurrentPage] = useState("songs");
   const [songList, setSongList] = useState([])
   const [favoriteSongsList, setFavoriteSongsList] = useState<string[]>([])
-  
+
   const changePage = (pageType: string) => {
     setCurrentPage(pageType);
   };
@@ -39,7 +39,7 @@ function App() {
     <div className={classes.body}>
       <Header />
       <FavoritesContext.Provider value={{ favoriteSongsList, setFavoriteSongsList }}>
-        <MainSection changePage={changePage} pageType={currentPage} songList={songList} favoriteSongs={favoriteSongsList} />
+        <MainSection changePage={changePage} pageType={currentPage} songList={songList}  />
       </FavoritesContext.Provider>
 
       <Player />

@@ -6,15 +6,14 @@ interface Props{
     changePage:(pageType:string) => MouseEventHandler<HTMLLIElement>
     pageType:string;
     songList:Array<Song>;
-    favoriteSongs:Array<string>
 }
-const MainSection = ({changePage,pageType,songList,favoriteSongs}:Props) =>{
+const MainSection = ({changePage,pageType,songList}:Props) =>{
       const { classes } = useStyles();
 
     return (
         <div className={classes.MainSection}>
         <SideBar changePage = {changePage}/>
-        <PageContent pageType = {pageType} songList={songList} favoriteSongs = {favoriteSongs} />
+        <PageContent pageType = {pageType} songList={songList} />
         </div>
 
     )

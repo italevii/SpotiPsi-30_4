@@ -20,7 +20,7 @@ const SongsTable = ({ songList}: Props) => {
 
 
   return (
-    <div className={classes.songs_table}>
+    <div>
       {songList.map((song) => (
         <SongDisplay
           key={song.id}

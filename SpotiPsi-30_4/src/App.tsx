@@ -5,8 +5,8 @@ import MainSection from './components/Main/MainSection';
 import { useEffect, useState, createContext } from 'react';
 import { fetchSongs } from './components/HelperFunctions/FetchSongs';
 import { fetchFavoriteSongs } from './components/HelperFunctions/FetchFavorites';
-
-
+import { fetchPlaylists } from './components/HelperFunctions/FetchPlaylists';
+import { BrowserRouter as Router , Routes ,Route } from 'react-router-dom';
 interface FavoritesContextType {
   favoriteSongsList: string[];
   setFavoriteSongsList: React.Dispatch<React.SetStateAction<string[]>>;
@@ -14,17 +14,15 @@ interface FavoritesContextType {
 
 const allSongs = await fetchSongs()
 const favoriteSongs = await fetchFavoriteSongs()
+const serverPlayLists = await fetchPlaylists()
 
-export const FavoritesContext = createContext<FavoritesContextType | null>(null);
-
-console.log(favoriteSongs)
 
 function App() {
   const { classes } = useStyles();
   const [currentPage, setCurrentPage] = useState("songs");
   const [songList, setSongList] = useState([])
-  const [favoriteSongsList, setFavoriteSongsList] = useState<string[]>(favoriteSongs)
-
+  const [favoriteSongsList, setFavoriteSongsList] = useState([])
+  const [playLists,setPlaylists] = useState([])
   const changePage = (pageType: string) => {
     setCurrentPage(pageType);
   };
@@ -35,14 +33,20 @@ function App() {
   }, [songList])
 
   
+    useEffect(() => {
+    setPlaylists(serverPlayLists)
+  }, [playLists])
+  
+    useEffect(() => {
+    setPlaylists(serverPlayLists)
+  }, [playLists])
+
+
   return (
     <div className={classes.body}>
       <Header />
-      <FavoritesContext.Provider value={{ favoriteSongsList, setFavoriteSongsList }}>
-        <MainSection changePage={changePage} pageType={currentPage} songList={songList}  />
-      </FavoritesContext.Provider>
-
-      <Player />
+      <MainSection changePage={changePage} pageType={currentPage} songList = {songList} playLists ={playLists} />
+      <Player/>
     </div>
   );
 }

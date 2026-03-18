@@ -10,7 +10,7 @@ interface Props{
 const PageContent = ({pageType,songList,favoriteSongs}:Props) =>{
     const getPage = (pageType:string) =>{
         if(pageType === "songs"){
-            return <AllSongsPage songList={songList}/>
+            return <AllSongsPage songList={songList} favoriteSongsList={favoriteSongs}/>
         }
         if(pageType === "favorites"){
             return <FavoritePage songList={songList} favoriteSongs={favoriteSongs}/>

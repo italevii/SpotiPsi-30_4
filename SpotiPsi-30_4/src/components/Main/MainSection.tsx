@@ -1,7 +1,6 @@
 import PageContent from "../PageContent/PageContent";
 import SideBar from "../Sidebar/Sidebar";
 import useStyles from "./MainSectionStyle";
-import SongsTable from "../songsTable/songsTable";
 import type { Song } from "../../assets/types";
 interface Props{
     changePage:(pageType:string) => MouseEventHandler<HTMLLIElement>

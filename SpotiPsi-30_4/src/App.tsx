@@ -7,6 +7,11 @@ import { fetchSongs } from './components/HelperFunctions/FetchSongs';
 import { fetchFavoriteSongs } from './components/HelperFunctions/FetchFavorites';
 import AllSongsPage from './components/AllSongsPage/AllSongsPage';
 import FavoritePage from './components/FavoritePage/FavoritePage';
+import { BrowserRouter as Router , Route,Routes } from "react-router-dom";
+
+
+
+
 const allSongs = await fetchSongs()
 const favoriteSongs = await fetchFavoriteSongs()
 function App() {
@@ -30,10 +35,8 @@ function App() {
   return (
     <div className={classes.body}>
       <Header />
-      <MainSection changePage={changePage} />
-      <Player />
-      <AllSongsPage songList={songList}/>
-      <FavoritePage songList={songList} favoriteSongs={favoriteSongsList}/>
+      <MainSection changePage={changePage} pageType={currentPage} songList = {songList} favoriteSongs ={favoriteSongsList} />
+      <Player/>
     </div>
   );
 }

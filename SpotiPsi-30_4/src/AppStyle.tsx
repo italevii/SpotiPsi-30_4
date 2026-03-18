@@ -5,7 +5,8 @@ const useStyles = makeStyles()(() => ({
         width:'100wh',
         height:'100vh',
         backgroundColor:'#121212',
-        margin:'0'
+        margin:'0',
+        fontFamily: "Arial, Helvetica, sans-serif",
 
     }
 

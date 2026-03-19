@@ -22,7 +22,6 @@ addPlayListButton:{
     borderRadius:'20px',
     height:'4vh',
     marginTop:'0.9%',
-
     fontSize:'100%',
     display:'flex',
     justifyContent:'center',

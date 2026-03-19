@@ -66,11 +66,11 @@ function App() {
 
   useEffect(() => {
     const fetchData = async () => {
-    const serverPlayLists = await fetchPlaylists()
-    setPlaylists(serverPlayLists)
-  }
+      const serverPlayLists = await fetchPlaylists()
+      setPlaylists(serverPlayLists)
+    }
 
-  fetchData()
+    fetchData()
   }, [reRenderPlayList])
 
 return (

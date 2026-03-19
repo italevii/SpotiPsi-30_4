@@ -5,6 +5,7 @@ import PlayList from './PlayList/PlayList';
 import AddIcon from '@mui/icons-material/Add';
 import AddPlaylistDialog from './AddPlaylistDialog/AddPlaylistDialog';
 import { useState } from 'react';
+import { Route } from 'react-router-dom';
 interface Props {
     playLists:Array<Playlist>
 }
@@ -38,11 +39,12 @@ const PlaylistsPage = ({ playLists }: Props) => {
           id={playlist.id}
           name={playlist.name}
           songIds={playlist.songIds}
-          enterPlayListPage={enterPlayListPage}
         />
       ))}
+      
         </List>
         <AddPlaylistDialog open={open} handleClose={handleClose} />
+
         </>
     )
 }

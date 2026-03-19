@@ -9,24 +9,34 @@ import { updateFavorites } from "../../assets/HelperFunctions/UpdateFavorites";
 import Popover from '@mui/material/Popover';
 import AddToPlaylistPopOver from "../songsTable/addToPlaylistPopOver/AddToPlaylistPopOver";
 
+import { PlayerContext } from "../../App";
+import { updateFavorites } from "../HelperFunctions/UpdateFavorites";
 interface Props {
     id: string
     name: string
     artist: string
     album: string
     isFavorite: boolean
+    onClick: () => void;
 }
 
-const SongDisplay = ({ id, name, artist, isFavorite }: Props) => {
+
+
+const SongDisplay = ({ id, name, artist, album, isFavorite, onClick }: Props) => {
     const { classes } = useStyles();
     const favoritesContext = useContext(FavoritesContext);
-    const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null)
+    const playerContext = useContext(PlayerContext);
 
 
     if (!favoritesContext) {
         throw new Error("FavoritesContext must be used inside FavoritesProvider");
     }
+    if (!playerContext) {
+        throw new Error("FavoritesContext must be used inside FavoritesProvider");
+    }
     const { favoriteSongsList, setFavoriteSongsList } = favoritesContext;
+    const { currentSong, setCurrentSong, isPlaying, setIsPlaying, queue, setQueue, currentTime, setCurrentTime, duration, setDuration } = playerContext;
+
 
     function FavoriteStatus({ isInFavorites }: { isInFavorites: boolean }) {
         if (isInFavorites) {
@@ -35,6 +45,7 @@ const SongDisplay = ({ id, name, artist, isFavorite }: Props) => {
             return <FavoriteBorderIcon className={classes.icons} />;
         }
     }
+    
     const ClickFavorites = () => {
         if (isFavorite) {
             setFavoriteSongsList(prev => prev.filter(songId => songId !== id));
@@ -59,7 +70,7 @@ const SongDisplay = ({ id, name, artist, isFavorite }: Props) => {
 
     return (
         <>
-            <div className={classes.song_div}>
+            <div className={id == currentSong?.id ?  classes.playing_song_div : classes.song_div} onClick={onClick}>
                 <div className={classes.inner_div}>
                     <PlayArrowIcon className={classes.purple_icon} />
                     <p>{name}-{artist}</p>
@@ -75,7 +86,7 @@ const SongDisplay = ({ id, name, artist, isFavorite }: Props) => {
 
                     <AddToPlaylistPopOver songId ={id}/>
                     </Popover>
-                    <div className={classes.inner_div} onClick={ClickFavorites}>
+                    <div className={classes.inner_div} onClick={(e) => { e.stopPropagation(); ClickFavorites(); }}>
                         <FavoriteStatus isInFavorites={isFavorite} />
                     </div>
                 </div>

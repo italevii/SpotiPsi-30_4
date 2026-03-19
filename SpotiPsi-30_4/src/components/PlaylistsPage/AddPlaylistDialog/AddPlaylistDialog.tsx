@@ -1,4 +1,4 @@
-import { Dialog, DialogActions, DialogContent, DialogTitle, Typography } from "@mui/material";
+import { Dialog, DialogContent, DialogTitle, Typography } from "@mui/material";
 import useStyles from "./AddPlaylistDialogStyle";
 import { useState,useContext } from "react";
 import { Button } from "@mui/material";
@@ -12,12 +12,12 @@ interface Props {
 const AddPlaylistDialog = ({ open, handleClose }: Props) => {
     const { classes } = useStyles();
     const [newPlaylistName, setNewPlaylistName] = useState("");
-    const favoritesContext = useContext(reRenderPlaylistsContext);
+    const playlistContext = useContext(reRenderPlaylistsContext);
     
-        if (!favoritesContext) {
+        if (!playlistContext) {
             throw new Error("FavoritesContext must be used inside FavoritesProvider");
         }
-        const { reRenderPlayList, setReRenderPlayList } = favoritesContext;
+        const {setReRenderPlayList } = playlistContext;
 
     const sendPlaylist = () => {
         if (newPlaylistName.trim() != "") {
@@ -26,7 +26,6 @@ const AddPlaylistDialog = ({ open, handleClose }: Props) => {
             setNewPlaylistName("")
             handleClose()
             setReRenderPlayList(prev => !prev)
-            console.log(reRenderPlayList)
             
         }
 
@@ -52,7 +51,6 @@ const AddPlaylistDialog = ({ open, handleClose }: Props) => {
                     <Button onClick={closeDialog}>ביטול</Button>
                     <Button onClick={sendPlaylist}>צור</Button>
                 </DialogContent>
-
             </Dialog>
 
 

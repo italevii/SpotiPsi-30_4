@@ -17,7 +17,6 @@ export const updateFavorites = async (FavoriteSongsList: string[], song: string)
                 "Content-type": "application/json; charset=UTF-8"
             }
         });
-        console.log('try to print')
     }
     catch (error) {
         console.error(error)

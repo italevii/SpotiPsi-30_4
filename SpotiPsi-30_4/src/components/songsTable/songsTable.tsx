@@ -4,6 +4,7 @@ import {CheckInFavorite} from "../../assets/HelperFunctions/CheckSongInFavorites
 import { useContext } from "react";
 import { FavoritesContext } from "../../App";
 import { PlayerContext } from "../../App";
+import useStyles from "./songsTableStyles";
 interface Props {
   songList: Array<Song>;
 }

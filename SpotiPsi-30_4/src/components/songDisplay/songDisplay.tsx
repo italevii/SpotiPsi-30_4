@@ -3,14 +3,13 @@ import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import AddIcon from '@mui/icons-material/Add';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import { useContext, useState } from "react";
+import { useContext,useState} from "react";
 import { FavoritesContext } from "../../App";
 import { updateFavorites } from "../../assets/HelperFunctions/UpdateFavorites";
 import Popover from '@mui/material/Popover';
 import AddToPlaylistPopOver from "../songsTable/addToPlaylistPopOver/AddToPlaylistPopOver";
-
 import { PlayerContext } from "../../App";
-import { updateFavorites } from "../HelperFunctions/UpdateFavorites";
+
 interface Props {
     id: string
     name: string
@@ -36,6 +35,8 @@ const SongDisplay = ({ id, name, artist, album, isFavorite, onClick }: Props) =>
     }
     const { favoriteSongsList, setFavoriteSongsList } = favoritesContext;
     const { currentSong, setCurrentSong, isPlaying, setIsPlaying, queue, setQueue, currentTime, setCurrentTime, duration, setDuration } = playerContext;
+        const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null)
+
 
 
     function FavoriteStatus({ isInFavorites }: { isInFavorites: boolean }) {

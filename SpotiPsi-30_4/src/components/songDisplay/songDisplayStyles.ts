@@ -24,6 +24,7 @@ const useStyles = makeStyles()(() => ({
   icons: {
     width: "1.5vw",
     height: "1.5vw",
+    cursor:'pointer'
   },
 
   inner_div: {

@@ -3,9 +3,11 @@ import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import AddIcon from '@mui/icons-material/Add';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { FavoritesContext } from "../../App";
 import { updateFavorites } from "../HelperFunctions/UpdateFavorites";
+import Popover from '@mui/material/Popover';
+import AddToPlaylistPopOver from "../songsTable/addToPlaylistPopOver/AddToPlaylistPopOver";
 interface Props {
     id: string
     name: string
@@ -14,9 +16,11 @@ interface Props {
     isFavorite: boolean
 }
 
-const SongDisplay = ({ id, name, artist, album, isFavorite }: Props) => {
+const SongDisplay = ({ id, name, artist, isFavorite }: Props) => {
     const { classes } = useStyles();
     const favoritesContext = useContext(FavoritesContext);
+    const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null)
+
 
     if (!favoritesContext) {
         throw new Error("FavoritesContext must be used inside FavoritesProvider");
@@ -33,14 +37,24 @@ const SongDisplay = ({ id, name, artist, album, isFavorite }: Props) => {
     const ClickFavorites = () => {
         if (isFavorite) {
             setFavoriteSongsList(prev => prev.filter(songId => songId !== id));
-            
+
         }
-        else{
+        else {
             setFavoriteSongsList(prev => [...prev, id])
         }
         updateFavorites(favoriteSongsList, id)
         isFavorite = !isFavorite
     }
+    const handleClick = (e) => {
+        setAnchorEl(e.currentTarget);
+    };
+
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
+
+    const open = Boolean(anchorEl);
+    const popOverId = open ? 'simple-popover' : undefined;
 
     return (
         <>
@@ -49,8 +63,21 @@ const SongDisplay = ({ id, name, artist, album, isFavorite }: Props) => {
                     <PlayArrowIcon className={classes.purple_icon} />
                     <p>{name}-{artist}</p>
                 </div>
-                <div className={classes.inner_div}>
-                    <AddIcon className={classes.icons} />
+                <div className={classes.inner_div}  >
+                    <AddIcon className={classes.icons} onClick={handleClick} />
+                        <Popover
+                        id={popOverId}
+                        open={open}
+                        anchorEl={anchorEl}
+                        onClose={handleClose}
+                        anchorOrigin={{
+                            vertical: 'bottom',
+                            horizontal: 'left',
+                        }}
+                    >
+
+                    <AddToPlaylistPopOver songId ={id}/>
+                    </Popover>
                     <div className={classes.inner_div} onClick={ClickFavorites}>
                         <FavoriteStatus isInFavorites={isFavorite} />
                     </div>

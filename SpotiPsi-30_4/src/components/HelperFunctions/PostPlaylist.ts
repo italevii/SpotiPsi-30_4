@@ -11,7 +11,6 @@ export const postPlaylist = async  (playListName:string) => {
     "Content-type": "application/json; charset=UTF-8"
   }
 });
-        console.log('try to print')
     }
     catch (error){
         console.error(error)

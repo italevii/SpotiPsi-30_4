@@ -36,10 +36,14 @@ function App() {
   }, [songList])
 
   
-    useEffect(() => {
+  useEffect(() => {
+    const fetchData = async () => {
+    const serverPlayLists = await fetchPlaylists()
     setPlaylists(serverPlayLists)
-  }, [playLists])
+  }
 
+  fetchData()
+  }, [reRenderPlayList])
 
 return (
   <BrowserRouter>
@@ -54,6 +58,7 @@ return (
     </div>
   </BrowserRouter>
 );
+
 }
 
 export default App;

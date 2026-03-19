@@ -1,9 +1,9 @@
 import SongsTable from '../../../songsTable/songsTable';
-import type { Playlist, Song } from '../../../../assets/types';
+import type {Song } from '../../../../assets/types';
 import { useLocation } from 'react-router-dom';
 import useStyles from './SinglePlayListPageStyle';
 import { useNavigate } from "react-router-dom";
-
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 interface Props {
   songList: Array<Song>;
 }
@@ -22,8 +22,10 @@ const SinglePlayListPage = ({ songList }: Props) => {
   return (
     <>
       <div>
-        <h1 className={classes.topOfThePage}>{playListName}</h1>
-        <button className={classes.goBackButton} onClick={goBackToPlaylists}> go back</button>
+        <div className={classes.topOfThePage} >
+        <h1 className={classes.pageHeader}>{playListName}</h1>
+        <ArrowBackIcon className={classes.goBackButton} onClick={goBackToPlaylists}> go back</ArrowBackIcon>
+        </div>
         <SongsTable songList={playListSongs} />
       </div>
     </>

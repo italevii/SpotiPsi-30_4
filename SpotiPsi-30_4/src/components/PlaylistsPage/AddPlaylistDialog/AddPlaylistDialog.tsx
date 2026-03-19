@@ -38,7 +38,7 @@ const AddPlaylistDialog = ({ open, handleClose }: Props) => {
     }
     return (
         <>
-            <Dialog open={open} onClose={handleClose}>
+            <Dialog  open={open} onClose={handleClose}>
                 <DialogTitle className={classes.Dialog}>
                     <Typography>יצירת פלייליסט חדש</Typography>
                 </DialogTitle>

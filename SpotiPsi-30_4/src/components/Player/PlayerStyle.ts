@@ -6,7 +6,7 @@ const useStyles = makeStyles()(() => ({
         left: '0',
         bottom: '0',
         width: '100%',
-        height: '15%',
+        height: '18%',
         backgroundColor: '#1D1D1D',
         color: "#ffffff",
         display: 'flex',
@@ -64,7 +64,15 @@ const useStyles = makeStyles()(() => ({
             backgroundColor: '#9B59B6',
             height: '0.15vw',
         },
-    }
+        
+    },
+    duration: {
+            marginRight: 'auto'
+
+        },
+        currentTime: {
+            marginLeft: 'auto'
+        }
 
 }));
 

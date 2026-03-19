@@ -59,6 +59,7 @@ const SongDisplay = ({ id, name, artist, album, isFavorite, onClick }: Props) =>
         isFavorite = !isFavorite
     }
     const handleClick = (e) => {
+        e.stopPropagation();
         setAnchorEl(e.currentTarget);
     };
 

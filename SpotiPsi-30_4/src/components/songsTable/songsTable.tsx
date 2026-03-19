@@ -1,10 +1,11 @@
 import SongDisplay from "../songDisplay/songDisplay";
-import type {Song} from "../../assets/types"
-import {CheckInFavorite} from "../../assets/HelperFunctions/CheckSongInFavorites"
+import type { Song } from "../../assets/types";
+import { CheckInFavorite } from "../../assets/HelperFunctions/CheckSongInFavorites";
 import { useContext } from "react";
 import { FavoritesContext } from "../../App";
-import { PlayerContext } from "../../App";
 import useStyles from "./songsTableStyles";
+import useAudioPlayer from "../useAudioPlayer/useAudioPlayer";
+
 interface Props {
   songList: Array<Song>;
 }
@@ -12,32 +13,32 @@ interface Props {
 const SongsTable = ({ songList }: Props) => {
   const { classes } = useStyles();
   const favoritesContext = useContext(FavoritesContext);
-  const playerContext = useContext(PlayerContext);
 
   if (!favoritesContext) {
     throw new Error("FavoritesContext must be used inside FavoritesProvider");
   }
-  if (!playerContext) {
-    throw new Error("FavoritesContext must be used inside FavoritesProvider");
-  }
-  const { favoriteSongsList, setFavoriteSongsList } = favoritesContext;
-  const { currentSong, setCurrentSong, isPlaying, setIsPlaying, queue, setQueue, currentTime, setCurrentTime, duration, setDuration } = playerContext;
 
+  const { favoriteSongsList } = favoritesContext;
+  const { playSong } = useAudioPlayer();
 
-  const playSong = (id: string) => {
-    setCurrentSong(songList[parseInt(id)-1])
-    setIsPlaying(true)
-    let audio = new Audio(`/songs/${id}.mp3`)
-    let Queue: Song[] = []
+  const buildQueue = (clickedSongId: string): Song[] => {
+    const songIndex = songList.findIndex((song) => song.id === clickedSongId);
 
-    if (parseInt(id) <= songList.length && parseInt(id) > 0) {
-      for (var i = parseInt(id) - 1; i < (parseInt(id) + songList.length - 1); i++) {
-        Queue.push(songList[i % songList.length]);
-      }
+    if (songIndex === -1) return [];
+
+    const newQueue: Song[] = [];
+
+    for (let i = songIndex; i < songIndex + songList.length; i++) {
+      newQueue.push(songList[i % songList.length]);
     }
-    console.log(Queue)
-    audio.play()
-  }
+
+    return newQueue;
+  };
+
+  const handlePlaySong = (song: Song) => {
+    const newQueue = buildQueue(song.id);
+    playSong(song, newQueue);
+  };
 
   return (
     <div>
@@ -49,7 +50,7 @@ const SongsTable = ({ songList }: Props) => {
           artist={song.artist}
           album={song.album}
           isFavorite={CheckInFavorite(favoriteSongsList, song.id)}
-          onClick={() => playSong(song.id)}
+          onClick={() => handlePlaySong(song)}
         />
       ))}
     </div>

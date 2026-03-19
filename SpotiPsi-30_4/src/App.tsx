@@ -1,7 +1,7 @@
 import Header from './components/Header/Header';
 import useStyles from './AppStyle';
 import Player from './components/Player/Player';
-import { useEffect, useState, createContext } from 'react';
+import { useEffect, useState, createContext, useRef } from 'react';
 import { fetchSongs } from './assets/HelperFunctions/FetchSongs';
 import { fetchFavoriteSongs } from './assets/HelperFunctions/FetchFavorites';
 import { fetchPlaylists } from './assets/HelperFunctions/FetchPlaylists';
@@ -36,6 +36,8 @@ interface PlayerContextType {
 
   duration: number;
   setDuration: React.Dispatch<React.SetStateAction<number>>;
+
+  audioRef: React.RefObject<HTMLAudioElement | null>;
 }
 
 const allSongs = await fetchSongs()
@@ -57,6 +59,7 @@ function App() {
   const [queue, setQueue] = useState<Song[]>([]);
   const [currentTime, setCurrentTime] = useState<number>(0);
   const [duration, setDuration] = useState<number>(0);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
     setSongList(allSongs)
@@ -73,24 +76,24 @@ function App() {
     fetchData()
   }, [reRenderPlayList])
 
-return (
-  <BrowserRouter>
-    <div className={classes.body}>
-    <PlayerContext.Provider
-    value={{currentSong, setCurrentSong, isPlaying, setIsPlaying, queue, setQueue, currentTime, setCurrentTime, duration, setDuration}}>
-      <Header />
-    <PlayListsContext.Provider value = {{playLists,setPlaylists}}>
-      <reRenderPlaylistsContext.Provider value={{reRenderPlayList, setReRenderPlayList}}>
-        <FavoritesContext.Provider value={{ favoriteSongsList, setFavoriteSongsList }}>
-          <MainSection songList={songList} playLists={playLists} />
-        </FavoritesContext.Provider>
-      </reRenderPlaylistsContext.Provider>
-      </PlayListsContext.Provider>
-      <Player/>
+  return (
+    <BrowserRouter>
+      <div className={classes.body}>
+        <PlayerContext.Provider
+          value={{ currentSong, setCurrentSong, isPlaying, setIsPlaying, queue, setQueue, currentTime, setCurrentTime, duration, setDuration, audioRef }}>
+          <Header />
+          <PlayListsContext.Provider value={{ playLists, setPlaylists }}>
+            <reRenderPlaylistsContext.Provider value={{ reRenderPlayList, setReRenderPlayList }}>
+              <FavoritesContext.Provider value={{ favoriteSongsList, setFavoriteSongsList }}>
+                <MainSection songList={songList} playLists={playLists} />
+              </FavoritesContext.Provider>
+            </reRenderPlaylistsContext.Provider>
+          </PlayListsContext.Provider>
+          <Player />
         </PlayerContext.Provider>
-    </div>
-  </BrowserRouter>
-);
+      </div>
+    </BrowserRouter>
+  );
 
 
 

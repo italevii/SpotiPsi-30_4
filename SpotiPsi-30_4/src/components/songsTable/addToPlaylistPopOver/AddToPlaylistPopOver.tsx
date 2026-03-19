@@ -10,12 +10,12 @@ interface Props {
 }
 const AddToPlaylistPopOver = ({ songId }: Props) => {
     const playListsContext = useContext(PlayListsContext);
-    const playlistContext = useContext(reRenderPlaylistsContext);
+    const reRenderplaylistContext = useContext(reRenderPlaylistsContext);
 
-    if (!playlistContext) {
+    if (!reRenderplaylistContext) {
         throw new Error("FavoritesContext must be used inside FavoritesProvider");
     }
-    const {setReRenderPlayList } = playlistContext;
+    const {setReRenderPlayList } = reRenderplaylistContext;
 
 
     const { classes } = useStyles()
@@ -38,12 +38,12 @@ const AddToPlaylistPopOver = ({ songId }: Props) => {
     }
     return (
         <>
-            <List>
+            <List className={classes.list}>
                 {playLists.map((playlist) => (
-                    <ListItem
+                    <ListItem onClick={() => addToPlaylist(playlist.id) }
                         key={playlist.id}
                         className={classes.playlistItem}  >
-                        <p onClick={() => addToPlaylist(playlist.id)}>{playlist.name}  </p>
+                        <p >{playlist.name}  </p>
                     </ListItem>
                 ))}
             </List>

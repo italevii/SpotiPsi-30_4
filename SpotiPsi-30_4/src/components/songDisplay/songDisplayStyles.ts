@@ -34,6 +34,9 @@ const useStyles = makeStyles()(() => ({
     height: "2.2vw",
     gap: "1vw",
   },
+  popOver:{
+    backgroundColor:'gray'
+  }
 }));
 
 export default useStyles;

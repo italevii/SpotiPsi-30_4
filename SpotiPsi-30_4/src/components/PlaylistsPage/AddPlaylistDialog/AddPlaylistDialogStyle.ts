@@ -1,5 +1,4 @@
 import { makeStyles } from "tss-react/mui";
-import { styled } from '@mui/material/styles';
 
 const useStyles = makeStyles()(() => ({
 
@@ -7,6 +6,9 @@ const useStyles = makeStyles()(() => ({
         direction:'rtl',
         backgroundColor:'style',
 
+},
+DialogStyle:{
+   
 }
 
 

@@ -30,7 +30,6 @@ const AddPlaylistDialog = ({ open, handleClose }: Props) => {
             
         }
 
-
     }
     const handleChange = (e) => {
         setNewPlaylistName(e.target.value);

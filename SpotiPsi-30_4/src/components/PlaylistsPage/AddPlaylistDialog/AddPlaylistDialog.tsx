@@ -1,31 +1,43 @@
-import { Dialog, DialogContent, DialogTitle, Typography } from "@mui/material";
+import { Dialog, DialogContent, DialogTitle, DialogActions } from "@mui/material";
 import useStyles from "./AddPlaylistDialogStyle";
 import { useState,useContext } from "react";
 import { Button } from "@mui/material";
 import { postPlaylist } from "../../HelperFunctions/PostPlaylist";
 import { reRenderPlaylistsContext } from "../../../App";
+import { checkIfPlaylistExists } from "../../HelperFunctions/CheckifPlaylistExists";
+import { PlayListsContext } from "../../../App";
 interface Props {
     open: boolean;
     handleClose: () => void;
 }
 
 const AddPlaylistDialog = ({ open, handleClose }: Props) => {
-    const { classes } = useStyles();
+   const {classes} = useStyles()
     const [newPlaylistName, setNewPlaylistName] = useState("");
-    const playlistContext = useContext(reRenderPlaylistsContext);
+    const reRenderplaylistContext = useContext(reRenderPlaylistsContext);
+        const playListsContext = useContext(PlayListsContext);
     
-        if (!playlistContext) {
+        if (!reRenderplaylistContext) {
             throw new Error("FavoritesContext must be used inside FavoritesProvider");
         }
-        const {setReRenderPlayList } = playlistContext;
+        const {setReRenderPlayList } = reRenderplaylistContext;
 
+    if (!playListsContext) {
+        throw new Error("FavoritesContext must be used inside FavoritesProvider");
+    }
+    const { playLists } = playListsContext;
     const sendPlaylist = () => {
-        if (newPlaylistName.trim() != "") {
+        if (newPlaylistName.trim() != "" ) {
+            if(! checkIfPlaylistExists(playLists,newPlaylistName)){
             postPlaylist(newPlaylistName)
-            alert(`playlist ${newPlaylistName} added`)
             setNewPlaylistName("")
             handleClose()
             setReRenderPlayList(prev => !prev)
+            }
+            else{
+                alert(`playlist ${newPlaylistName} already exists`)
+            }
+
             
         }
 
@@ -38,19 +50,17 @@ const AddPlaylistDialog = ({ open, handleClose }: Props) => {
     }
     return (
         <>
-            <Dialog  open={open} onClose={handleClose}>
-                <DialogTitle className={classes.Dialog}>
-                    <Typography>יצירת פלייליסט חדש</Typography>
+            <Dialog  open={open} onClose={handleClose} classes={{ paper: classes.Dialog }} >
+                <DialogTitle className={classes.title}>
+                    יצירת פלייליסט חדש
                 </DialogTitle>
-                <DialogContent className={classes.Dialog} dividers>
-                    <Typography gutterBottom>
-                        <input value={newPlaylistName} onChange={handleChange} id="playlistName" placeholder="שם הפלייליסט"></input>
-                    </Typography>
+                <DialogContent className={classes.content}>
+                        <input value={newPlaylistName} onChange={handleChange} id="playlistName" placeholder="שם הפלייליסט" className={classes.input}></input>
                 </DialogContent>
-                <DialogContent>
-                    <Button onClick={closeDialog}>ביטול</Button>
-                    <Button onClick={sendPlaylist}>צור</Button>
-                </DialogContent>
+                <DialogActions className={classes.buttons}>
+                    <Button onClick={closeDialog} className={classes.cancelButton}>ביטול</Button>
+                    <Button onClick={sendPlaylist} className={classes.createButton}>צור</Button>
+                </DialogActions>
             </Dialog>
 
 

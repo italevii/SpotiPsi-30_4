@@ -2,7 +2,16 @@ import { makeStyles } from "tss-react/mui";
 
 const useStyles = makeStyles()(() => ({
   playlistItem: {
-    cursor:'pointer'
+    cursor:'pointer',
+      "&:hover": {
+      backgroundColor: '#484848',
+    },
+  },
+  list:{
+    width:'15vh',
+    backgroundColor:'#383838',
+    color:'white',
+    direction:'rtl'
   }
 
 }));

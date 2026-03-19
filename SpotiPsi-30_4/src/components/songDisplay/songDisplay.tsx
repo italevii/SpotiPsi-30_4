@@ -8,6 +8,7 @@ import { FavoritesContext } from "../../App";
 import { updateFavorites } from "../HelperFunctions/UpdateFavorites";
 import Popover from '@mui/material/Popover';
 import AddToPlaylistPopOver from "../songsTable/addToPlaylistPopOver/AddToPlaylistPopOver";
+import { blue, grey } from "@mui/material/colors";
 interface Props {
     id: string
     name: string

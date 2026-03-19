@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 const SideBar = () => {
     const { classes } = useStyles();
-      const navigate = useNavigate();
+    const navigate = useNavigate();
 
     const ChangePage = (pageType:string) =>{
         if(pageType === "songs"){

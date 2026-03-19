@@ -1,6 +1,6 @@
 import SongDisplay from "../songDisplay/songDisplay";
 import type {Song} from "../../assets/types"
-import {CheckInFavorite} from "../HelperFunctions/CheckSongInFavorites"
+import {CheckInFavorite} from "../../assets/HelperFunctions/CheckSongInFavorites"
 import { useContext } from "react";
 import { FavoritesContext } from "../../App";
 
@@ -15,7 +15,6 @@ const SongsTable = ({ songList}: Props) => {
         throw new Error("FavoritesContext must be used inside FavoritesProvider");
     }
     const { favoriteSongsList } = favoritesContext;
-
 
   return (
     <div>

@@ -2,9 +2,9 @@ import Header from './components/Header/Header';
 import useStyles from './AppStyle';
 import Player from './components/Player/Player';
 import { useEffect, useState, createContext } from 'react';
-import { fetchSongs } from './components/HelperFunctions/FetchSongs';
-import { fetchFavoriteSongs } from './components/HelperFunctions/FetchFavorites';
-import { fetchPlaylists } from './components/HelperFunctions/FetchPlaylists';
+import { fetchSongs } from './assets/HelperFunctions/FetchSongs';
+import { fetchFavoriteSongs } from './assets/HelperFunctions/FetchFavorites';
+import { fetchPlaylists } from './assets/HelperFunctions/FetchPlaylists';
 import { BrowserRouter } from "react-router-dom";
 import MainSection from './components/Main/MainSection';
 import type { Playlist } from './assets/types';
@@ -36,7 +36,6 @@ function App() {
 
   useEffect(() => {
     setSongList(allSongs)
-    console.log(songList)
 
   }, [songList])
 
@@ -46,7 +45,6 @@ function App() {
     const serverPlayLists = await fetchPlaylists()
     setPlaylists(serverPlayLists)
   }
-
   fetchData()
   }, [reRenderPlayList])
 

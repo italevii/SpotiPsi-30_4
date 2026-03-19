@@ -4,12 +4,13 @@ import { useLocation } from 'react-router-dom';
 import useStyles from './SinglePlayListPageStyle';
 import { useNavigate } from "react-router-dom";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+
 interface Props {
   songList: Array<Song>;
 }
 
 const SinglePlayListPage = ({ songList }: Props) => {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const location = useLocation();
   const {classes} = useStyles()
@@ -19,6 +20,7 @@ const SinglePlayListPage = ({ songList }: Props) => {
   const goBackToPlaylists = () =>{
     navigate('/playlists')
   }
+
   return (
     <>
       <div>

@@ -1,4 +1,4 @@
-import type { Playlist } from "../../assets/types"
+import type { Playlist } from "../types"
 export const checkIfPlaylistExists = (playlists: Array<Playlist> ,playlistName: string): boolean => {
     let isInPlaylist: boolean = false
     isInPlaylist = playlists.some((playlist) => {

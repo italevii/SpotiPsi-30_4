@@ -5,10 +5,10 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { useContext, useState } from "react";
 import { FavoritesContext } from "../../App";
-import { updateFavorites } from "../HelperFunctions/UpdateFavorites";
+import { updateFavorites } from "../../assets/HelperFunctions/UpdateFavorites";
 import Popover from '@mui/material/Popover';
 import AddToPlaylistPopOver from "../songsTable/addToPlaylistPopOver/AddToPlaylistPopOver";
-import { blue, grey } from "@mui/material/colors";
+
 interface Props {
     id: string
     name: string
@@ -71,10 +71,6 @@ const SongDisplay = ({ id, name, artist, isFavorite }: Props) => {
                         open={open}
                         anchorEl={anchorEl}
                         onClose={handleClose}
-                        anchorOrigin={{
-                            vertical: 'bottom',
-                            horizontal: 'left',
-                        }}
                     >
 
                     <AddToPlaylistPopOver songId ={id}/>

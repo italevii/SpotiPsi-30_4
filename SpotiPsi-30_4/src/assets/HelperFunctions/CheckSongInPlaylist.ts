@@ -1,6 +1,5 @@
-import type { Playlist } from "../../assets/types"
+import type { Playlist } from "../types"
 export const isInPlaylist = (playlists: Array<Playlist>, songID: string, playlistId: string): boolean => {
-    console.log(playlists)
     let isInPlaylist: boolean = false
     isInPlaylist = playlists.some((playlist) => {
         if (playlist.id === playlistId) {

@@ -1,10 +1,9 @@
 import useStyles from "./PlayerStyle";
-const Footer = () =>{
-      const { classes } = useStyles();
-
-    return(
+const Footer = () => {
+    const { classes } = useStyles();
+    return (
         <>
-        <div className={classes.footer}>נגן שירים</div>
+            <div className={classes.footer}>נגן שירים</div>
         </>
     )
 }

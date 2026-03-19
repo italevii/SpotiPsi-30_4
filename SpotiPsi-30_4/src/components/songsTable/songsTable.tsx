@@ -1,4 +1,3 @@
-import useStyles from "./songsTableStyles";
 import SongDisplay from "../songDisplay/songDisplay";
 import type {Song} from "../../assets/types"
 import {CheckInFavorite} from "../HelperFunctions/CheckSongInFavorites"
@@ -10,13 +9,12 @@ interface Props {
 }
 
 const SongsTable = ({ songList}: Props) => {
-  const { classes } = useStyles();
   const favoritesContext = useContext(FavoritesContext);
 
     if (!favoritesContext) {
         throw new Error("FavoritesContext must be used inside FavoritesProvider");
     }
-    const { favoriteSongsList, setFavoriteSongsList } = favoritesContext;
+    const { favoriteSongsList } = favoritesContext;
 
 
   return (

@@ -12,12 +12,11 @@ const FavoritePage = ({ songList }: Props) => {
     if (!favoritesContext) {
         throw new Error("FavoritesContext must be used inside FavoritesProvider");
     }
-    const { favoriteSongsList, setFavoriteSongsList } = favoritesContext;
+    const { favoriteSongsList} = favoritesContext;
 
     let favoriteSongslist1:Array<Song> =[]
     favoriteSongslist1 = songList.filter((item:Object) => 
         favoriteSongsList.includes(item.id))
-    console.log(favoriteSongslist1)
     return (
         <>
         <h1 className={classes.topOfThePage} >המועדפים שלי</h1>
